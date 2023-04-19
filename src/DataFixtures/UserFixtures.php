@@ -14,8 +14,9 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
         $admin = new User();
         $admin->setEmail('supermarket@supermarket.com');
-        $admin->setPassword('supermarket');
-        $admin->setRoles((array)'admin');
+        $password = password_hash('supermarket', PASSWORD_BCRYPT);
+        $admin->setPassword($password);
+        $admin->setRoles(['ROLE_ADMIN']);
         $manager->persist($admin);
         $manager->flush();
     }

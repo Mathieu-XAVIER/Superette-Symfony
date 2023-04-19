@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ShopController extends AbstractController
 {
-    #[Route('/shop', name: 'app_shop')]
+    #[Route('/', name: 'app_shop')]
     public function index(ManagerRegistry $doctrine): Response
     {
         $repo_produits = $doctrine->getRepository(Product::class);
