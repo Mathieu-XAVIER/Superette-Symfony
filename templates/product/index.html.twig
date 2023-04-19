@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Produits</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td><img src="{{ asset('uploads/images/' ~ product.image) }}" alt="{{ product.titre }}" width="100"></td>
+                    <td>{{ product.titre }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.prix }} €</td>
+                    <td>{{ product.quantite }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

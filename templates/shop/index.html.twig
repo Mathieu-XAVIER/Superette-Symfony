@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue chez SuperMarket !{% endblock %}
+
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ma boutique en ligne</title>
+    <style>
+        body{
+            margin: auto;
+            padding: auto;
+        }
+        .shop{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .shop .product{
+            margin: 20px;
+        }
+        /* style pour les produits */
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .product img {
+            max-width: 100%;
+            width: 300px;
+            height: 200px;
+
+        }
+
+        .product h2 {
+            margin: 10px 0;
+        }
+
+        .product p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .quantity {
+            margin-top: 10px;
+        }
+
+        .quantity label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .quantity input {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .quantity button {
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .quantity button:hover {
+            background-color: #ccc;
+        }
+        /* Style pour le header */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style pour les boutons */
+        .button {
+            display: inline-block;
+            padding: 10px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Superette</h1>
+    <div>
+        <a class="button" href="{{ path('app_shop') }}">Shop</a>
+        <a class="button" href="{{ path('admin') }}">Connexion Admin</a>
+    </div>
+</header>
+<div class="shop">
+    <div class="product">
+        <img src="https://img.passeportsante.net/1200x675/2021-05-03/i101971-banane-nu.webp" alt="image banane">
+        <h2>Bananes</h2>
+        <p>Ces bananes sont super bonnes.</p>
+        <div class="product-price">4.99 €</div>
+        <div class="quantity">
+            <label for="quantity-1">Quantité :</label>
+            <input type="number" id="quantity-1" name="quantity-1" min="1" value="1">
+            <button>Ajouter au panier</button>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://res.cloudinary.com/hv9ssmzrz/image/fetch/c_fill,f_auto,h_600,q_auto,w_800/https://images-ca-1-0-1-eu.s3-eu-west-1.amazonaws.com/photos/original/735/produit-cerises-AdobeStock_161826394.jpg" alt="image cerise">
+        <h2>Cerises</h2>
+        <p>Ceci est la description des cerises.</p>
+        <div class="product-price">7.99 €</div>
+        <div class="quantity">
+            <label for="quantity-2">Quantité :</label>
+            <input type="number" id="quantity-2" name="quantity-2" min="1" value="1">
+            <button>Ajouter au panier</button>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://www.tomates-de-france.com/fileadmin/user_upload/Fond_tomate_1.jpg" alt="image tomate">
+        <h2>Tomates</h2>
+        <p>Mes tomates sont rouges.</p>
+        <div class="product-price">10 €</div>
+        <div class="quantity">
+            <label for="quantity-2">Quantité :</label>
+            <input type="number" id="quantity-2" name="quantity-2" min="1" value="1">
+            <button>Ajouter au panier</button>
+        </div>
+    </div>
+
+    <div class="product">
+        <img src="https://www.foodette.fr/wp-content/uploads/2017/08/apple-417924_1920-compressor-1024x656.jpg" alt="Produit 2">
+        <h2>Pommes</h2>
+        <p>Les pommes viennent de France</p>
+        <div class="product-price">3.50 €</div>
+        <div class="quantity">
+            <label for="quantity-2">Quantité :</label>
+            <input type="number" id="quantity-2" name="quantity-2" min="1" value="1">
+            <button>Ajouter au panier</button>
+        </div>
+    </div>
+
+    {% for p in produits %}
+        <div class="product">
+            <img src="https://www.foodette.fr/wp-content/uploads/2017/08/apple-417924_1920-compressor-1024x656.jpg" alt="Produit 2">
+            <h2>{{p.title }}</h2>
+            <p>{{ p.description }}</p>
+            <div class="product-price">{{ p.price }} €</div>
+            <div class="quantity">
+                <label for="quantity-2">Quantité : {{ p.quantity }}</label>
+                <button>Ajouter au panier</button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+</body>
+{% endblock %}
